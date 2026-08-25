@@ -1,0 +1,11 @@
+{
+  "name": "Audit Air AI",
+  "description": "Real-time multimodal industrial safety and compliance auditing dashboard with live video inspection, audio streaming, and automatic hazard detection.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
