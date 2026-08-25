@@ -17,7 +17,6 @@
 
 ## 🏗️ System Architecture & Workflow
 
-
 ```mermaid
 graph TD
     A[Edge Client Next.js 15] -->|1 FPS JPEG + PCM Audio| B[Gemini Live API WebSocket]
@@ -36,9 +35,6 @@ graph TD
     style F fill:#121212,stroke:#eab308,stroke-width:2px,color:#fff
     style G fill:#121212,stroke:#6366f1,stroke-width:2px,color:#fff
     style H fill:#121212,stroke:#06b6d4,stroke-width:2px,color:#fff
-
-
----
 
 
 ---
