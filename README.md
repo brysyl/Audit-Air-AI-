@@ -14,7 +14,6 @@
 **Audit Air AI** is a production-grade, real-time safety compliance watchdog designed for high-risk industrial environments (construction, manufacturing, and logistics). Moving beyond static photo uploads and manual inspections, Audit Air utilizes **Gemini's bidirectional Live WebSocket API** to stream live video and audio from the field. It provides instant, hands-free spoken warnings to auditors while automatically orchestrating incident logs, frame storage, and vector embeddings through a self-hosted backend.
 
 ---
-
 ## 🏗️ System Architecture & Workflow
 
 ```mermaid
@@ -37,6 +36,9 @@ graph TD
     style H fill:#121212,stroke:#06b6d4,stroke-width:2px,color:#fff
 
 
+```
+
+---
 
 ## 🛠️ Tech Stack
 
