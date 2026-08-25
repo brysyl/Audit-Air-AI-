@@ -18,20 +18,33 @@
 ## 🏗️ System Architecture & Workflow
 
 
-[ Edge Client (Next.js) ]
-│ (1 FPS Base64 JPEG + 16kHz PCM Audio)
-▼
-[ Gemini Live API (WebSocket) ] ──(Spoken Audio Response)──> [ Auditor Earpiece ]
-│
-├── (Trigger: toolCall 'log_incident')
-▼
-[ Next.js API Gateway (/api/ingest) ] ──(Zod Validation & Proxy)
-│
-▼
-[ n8n Orchestrator (Docker on Vultr) ]
-├──> Gemini text-embedding-004 (Generate 768-dim Vector)
-├──> Supabase Storage (Upload Raw Evidence Frame)
-└──> Supabase PostgreSQL pgvector (Insert Incident Row)
+```mermaid
+graph TD
+    %% Edge & Client Layer
+    Client["Edge Client (Next.js 15)"] -->|1 FPS Base64 JPEG + 16kHz PCM Audio| GeminiLive["Gemini Live API (WebSocket)"]
+    
+    %% Real-Time Audio Feedback
+    GeminiLive -->|Spoken Audio Response| Earpiece["Auditor Earpiece"]
+    
+    %% Event Trigger & Proxy
+    GeminiLive -->|Trigger: toolCall 'log_incident'| NextGateway["Next.js API Gateway (/api/ingest)"]
+    NextGateway -->|Zod Validation & Proxy| N8n["n8n Orchestrator (Docker on Vultr)"]
+    
+    %% Backend Storage & Vector Processing
+    N8n -->|Generate 768-dim Vector| EmbedAPI["Gemini text-embedding-004"]
+    N8n -->|Upload Evidence Frame| Storage["Supabase Storage (audit-incidents)"]
+    N8n -->|Insert Record & Embedding| DB["Supabase PostgreSQL (pgvector)"]
+
+    %% Styling for Dark Mode GitHub Readme
+    style Client fill:#121212,stroke:#3b82f6,stroke-width:2px,color:#fff
+    style GeminiLive fill:#121212,stroke:#8b5cf6,stroke-width:2px,color:#fff
+    style NextGateway fill:#121212,stroke:#10b981,stroke-width:2px,color:#fff
+    style N8n fill:#121212,stroke:#f97316,stroke-width:2px,color:#fff
+    style DB fill:#121212,stroke:#06b6d4,stroke-width:2px,color:#fff
+
+
+---
+
 
 ---
 
